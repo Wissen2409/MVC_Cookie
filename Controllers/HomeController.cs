@@ -48,12 +48,15 @@ public class HomeController : Controller
 
             if (email == shaUserName && password == shaPassword)
             {
-
                 return View("Welcome");
             }
+            
         }
-        LoginViewModel model = new LoginViewModel();
-        return View(model);
+        else{
+
+            return View();
+        }
+        return View(new LoginViewModel());
     }
 
     [HttpPost]
