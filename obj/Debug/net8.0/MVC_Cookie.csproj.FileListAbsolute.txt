@@ -28,3 +28,4 @@
 /Users/emrahelis/MVC_Cookie/obj/Debug/net8.0/MVC_Cookie.pdb
 /Users/emrahelis/MVC_Cookie/obj/Debug/net8.0/MVC_Cookie.genruntimeconfig.cache
 /Users/emrahelis/MVC_Cookie/obj/Debug/net8.0/ref/MVC_Cookie.dll
+/Users/emrahelis/MVC_Cookie/obj/Debug/net8.0/MVC_Cookie.sourcelink.json

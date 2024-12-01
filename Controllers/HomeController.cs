@@ -14,16 +14,58 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public IActionResult Login(){
+    public IActionResult Login()
+    {
 
+
+        // sayfa ilk açıldığında, eğer cookie varsa, login ekranı açılmadan başka bir view'a yönlendirme işlemi yapalım!!
+        if (Request.Cookies["Email"] != null)
+        {
+            var email = Request.Cookies["Email"];
+            var password = Request.Cookies["Password"];
+
+            if(email==LoginUser.UserName && password==LoginUser.Password){
+
+                return View("Welcome");
+            }
+        }
         LoginViewModel model = new LoginViewModel();
         return View(model);
     }
 
     [HttpPost]
-    public IActionResult Login(LoginViewModel model){
+    public IActionResult Login(LoginViewModel model)
+    {
 
-        return View();
+
+        // Kullanıcı kontrolünden geçirilir!!
+
+
+        // beni hatırla butonu aktif ise cookie oluşturalım!!
+
+        if (model.Email == LoginUser.UserName && model.Password == LoginUser.Password)
+        {
+            var emailOption = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(1),
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict   // CRFS saldırılarına karşı koruma!!
+            };
+            var passwordOption = new CookieOptions
+            {
+                Expires = DateTime.Now.AddDays(1),
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.Strict   // CRFS saldırılarına karşı koruma!!
+            };
+            Response.Cookies.Append("Email", model.Email, emailOption);
+            Response.Cookies.Append("Password", model.Password, passwordOption);
+            return View("Welcome");
+
+        }
+        return View(new LoginViewModel());
+
 
     }
 
@@ -32,7 +74,7 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         // Cookie : Web sayfalarının kullanıcıyı tanıması için, kişinin bilgisayarına bıraktığı bir text dosyadır!!
- 
+
         return View();
     }
 
