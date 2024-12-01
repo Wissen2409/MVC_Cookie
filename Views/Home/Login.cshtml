@@ -37,6 +37,8 @@ olarak ekleyecektir!!*@
 </form>
 
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 
 
@@ -53,6 +55,21 @@ olarak ekleyecektir!!*@
         }
 
     }
+
+    // yukarıdaki javascript ile yazılan kodu jquery ile yazalım
+    $(document).ready(function(){
+    
+        var hiddenValue = $("#model").val();
+        if(hiddenValue=='0'){
+
+            alert("Model null");
+        }
+    
+    })
+
+    // yukarıdaki örneği jquery ile yakalayalım!!!action
+
+
 
 
 </script>
